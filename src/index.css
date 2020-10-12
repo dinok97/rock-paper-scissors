@@ -11,3 +11,46 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+body,
+html,
+.container {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+body {
+  background-color: #313247;
+  color: #ffffff;
+}
+
+.center-text{
+  text-align: center;
+}
+
+.user-choice {
+  display: inline;
+  object-position: center;  
+}
+
+.add-margin{
+  margin: 10px;
+}
+
+.add-padding{
+  padding: 10px;
+}
+
+.symbol {
+  font-size: 36px;
+  cursor: pointer;
+  padding-top: 5px;
+}
+
+.history{
+  width: 50%;
+  text-align: left;
+  margin: auto;
+  max-height: 100px;
+}
