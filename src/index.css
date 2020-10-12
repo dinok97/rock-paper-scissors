@@ -30,8 +30,8 @@ body {
 }
 
 .user-choice {
-  display: inline;
-  object-position: center;  
+  margin: 36px;
+  object-position: center; 
 }
 
 .add-margin{
@@ -42,10 +42,40 @@ body {
   padding: 10px;
 }
 
+.button{
+  outline: none;
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+h1{
+  margin-bottom: 46px;
+}
+
+.button-green{
+  background-color: #4CAF50;
+}
+
+.button-red{
+  background-color: red;
+}
+
 .symbol {
-  font-size: 36px;
+  width: 100px;
+  height: 100px;
+  background-color: grey;
+  font-size: 46px;
   cursor: pointer;
   padding-top: 5px;
+  border-radius: 12px;
 }
 
 .history{

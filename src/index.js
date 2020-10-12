@@ -22,8 +22,8 @@ function generateComputerChoice(){
 
 class History extends React.Component{
   render(){
-    const historyList = this.props.historyList;
-    const listItems = historyList.map((history, index) =><li key={index}><p>{history}</p></li>);
+    let matchHistory = this.props.matchHistory;
+    let listItems = matchHistory.map((history, index) =><li key={index}><p>{history}</p></li>);
     return(
       <div className="history">
         <h2>history</h2>
@@ -39,9 +39,9 @@ class Info extends React.Component{
   render(){
     return (
       <div>
-        <h3> (You) {this.props.info.userChoice} VS {this.props.info.computerChoice} (Computer)</h3>
-        <h3> Result: {this.props.info.result} </h3>
-        <h3> (You) {this.props.info.userScore} : {this.props.info.computerScore} (Computer)</h3>
+        <h3> (You) {this.props.matchInfo.userChoice} VS {this.props.matchInfo.computerChoice} (Computer)</h3>
+        <h3> Result: {this.props.matchInfo.result} </h3>
+        <h3> (You) {this.props.matchInfo.userScore} : {this.props.matchInfo.computerScore} (Computer)</h3>
       </div>
     );
   }
@@ -103,40 +103,40 @@ class Application extends React.Component{
     });
 
     if(userChoice_ === computerChoice_){
-      let history_ = this.state.history;
-      history_.push("Draw");
+      let historyList = this.state.history;
+      historyList.push("Draw");
       this.setState({
         result: "Draw",
         winner: "",
         visible: true,
-        history: history_
+        history: historyList
       });
     } else {
       if(logic[userChoice_].w === computerChoice_) {
         let newUserScore = this.state.userScore + 1;
         let newComputerScore = this.state.computerScore;
-        let history_ = this.state.history;
-        history_.push("You Win! ");
+        let historyList = this.state.history;
+        historyList.push("You Win! ");
         this.setState({
           result: "You Win",
           winner: "User",
           visible: true,
           userScore: newUserScore,
           computerScore: newComputerScore,
-          history: history_
+          history: historyList
         });
       } else {
         let newUserScore = this.state.userScore;
         let newComputerScore = this.state.computerScore + 1;
-        let history_ = this.state.history;
-        history_.push("You Lose!");
+        let historyList = this.state.history;
+        historyList.push("You Lose!");
         this.setState({
           result: "Computer Win",
           winner: "Computer",
           visible: true,
           userScore: newUserScore,
           computerScore: newComputerScore,
-          history: history_
+          history: historyList
         });
       }
     }
@@ -174,24 +174,26 @@ class Application extends React.Component{
 
   render(){
     let buttonControl;
+    let timer;
 
     if(this.state.buttonFlag){
-      buttonControl = <button onClick={()=>this.onButtonClick()}> Start </button>;
+      buttonControl = <button className="button button-green" onClick={()=>this.onButtonClick()}> Start </button>;
+      timer = <h4>Click button to start</h4>
     } else {
-      buttonControl = <button onClick={()=>this.onButtonClick()}> Stop </button>;
+      buttonControl = <button className="button button-red" onClick={()=>this.onButtonClick()}> Stop </button>;
+      timer = <h4> You've play for {this.state.timer} seconds</h4>
     }
 
     return(
       <div className="container">
         <div className="center-text">
           <h1>Rock - Paper - Scissors</h1>
-          <h4>{this.state.timer}</h4>
+          {timer}
           {buttonControl}
-          <h1></h1>
         </div>
         <UserElementChoise compare={this.compare} buttonFlag={this.state.buttonFlag}/>
-        <Info info={this.state} />
-        <History historyList={this.state.history}/>
+        <Info matchInfo={this.state} />
+        <History matchHistory={this.state.history}/>
       </div>
     )
   }
